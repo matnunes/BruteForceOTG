@@ -1,0 +1,13 @@
+
+*.o
+*.Debug
+*.Release
+BFTerminal/release/moc_bfworker.cpp
+BFTerminal/release/moc_console.cpp
+BFTerminal/release/moc_mainwindow.cpp
+BFTerminal/release/moc_predefs.h
+BFTerminal/release/moc_settingsdialog.cpp
+BFTerminal/release/qrc_terminal.cpp
+BFTerminal/Makefile
+*.exe
+BFTerminal/terminal.pro.user
