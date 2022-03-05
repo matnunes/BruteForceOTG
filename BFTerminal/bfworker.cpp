@@ -51,7 +51,7 @@ void BFWorker::run()
 
             //1
             emit wakeUpPhone();
-            QThread::currentThread()->msleep(950); //awaits a bit for login screen animation
+            QThread::currentThread()->msleep(1150); //awaits a bit for login screen animation
 
             //2
             emit updateConsole("sending password >>"+roundPassword.toUtf8()+"<<");
@@ -109,8 +109,8 @@ int BFWorker::getPhotosensor()
 
     currentScreen = data.toInt();
     emit updateConsole("screen value "+data.simplified()+
-                       ". Limit MIN:"+QString::number(currentScreen*0.8)+
-                       " MAX:"+QString::number(currentScreen*1.2)+".");
+                       ". Limit MIN:"+QString::number(screenOff*0.8)+
+                       " MAX:"+QString::number(screenOff*1.2)+".");
     return data.toInt();
 }
 

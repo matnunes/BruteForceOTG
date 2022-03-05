@@ -130,8 +130,8 @@ void MainWindow::closeSerialPort()
 
 void MainWindow::about()
 {
-    QMessageBox::about(this, tr("About Brute force OTG"),
-                       tr("Brute force OTG for locked phones "));
+    QMessageBox::about(this, tr("About Brute Force OTG"),
+                       tr("Brute force OTG password recovery for locked phones."));
 }
 
 void MainWindow::handleError(QSerialPort::SerialPortError error)
@@ -164,9 +164,6 @@ void MainWindow::openWordlist()
             emit setWordlist(wordlist);
             updateConsole(QString("wordlist loaded "+ QString::number(wordlist.size())+" items."));
         }
-        int startPos = QInputDialog::getInt(this,"Start index","Start from index:");
-        updateConsole(QString("start from index "+QString::number(startPos)+" of "+QString::number(wordlist.size())+"."));
-        bfWorkerThread->startIndex = startPos;
     }
 }
 void MainWindow::wakePhone()
@@ -198,6 +195,9 @@ void MainWindow::startBFWorker()
 {
     if (bfWorkerThread->isConnected())
     {
+        int startPos = QInputDialog::getInt(this,"Start index","Start from index:");
+        updateConsole(QString("start from index "+QString::number(startPos)+"."));
+        bfWorkerThread->startIndex = startPos;
         bfWorkerThread->start();
     }
 }
