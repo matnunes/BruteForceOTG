@@ -114,6 +114,12 @@ int BFWorker::getPhotosensor()
     return data.toInt();
 }
 
+void BFWorker::displayCalibration()
+{
+    this->writeData("C");
+    emit updateConsole(QString("display calibration pattern."));
+}
+
 void BFWorker::setWordlist(QStringList wordlistAttack)
 {
     this->wordlist = new QStringList(wordlistAttack);

@@ -35,6 +35,7 @@ signals:
 public slots:
     void wakePhone();
     int getPhotosensor();
+    void displayCalibration();
     void setWordlist(QStringList);
     void writeData(const QByteArray &data);
 

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>376</width>
+    <width>436</width>
     <height>408</height>
    </rect>
   </property>
@@ -21,13 +21,13 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>376</width>
+     <width>436</width>
      <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCalls">
     <property name="title">
-     <string>Calls</string>
+     <string>Serial</string>
     </property>
     <addaction name="actionConnect"/>
     <addaction name="actionDisconnect"/>
@@ -76,6 +76,7 @@
    <addaction name="actionOpenDict"/>
    <addaction name="actionWakePhone"/>
    <addaction name="actionPhotoSensor"/>
+   <addaction name="actionCalibration"/>
    <addaction name="separator"/>
    <addaction name="actionStartBF"/>
    <addaction name="actionStopBF"/>
@@ -230,6 +231,18 @@
    </property>
    <property name="toolTip">
     <string>Resume</string>
+   </property>
+  </action>
+  <action name="actionCalibration">
+   <property name="icon">
+    <iconset resource="terminal.qrc">
+     <normaloff>:/images/shamrock.ico</normaloff>:/images/shamrock.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Calibration</string>
+   </property>
+   <property name="toolTip">
+    <string>Calibrate</string>
    </property>
   </action>
  </widget>

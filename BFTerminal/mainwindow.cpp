@@ -186,6 +186,14 @@ void MainWindow::getPhotosensor()
     }
 }
 
+void MainWindow::sendCalibrate()
+{
+    if (bfWorkerThread->isConnected())
+    {
+        bfWorkerThread->displayCalibration();
+    }
+}
+
 void MainWindow::updateConsole(QString text)
 {
     m_console->putData(QString(QDateTime::currentDateTime().toString("hh:mm:ss.zzz")+": "+text).append("\r\n").toUtf8());
@@ -222,6 +230,7 @@ void MainWindow::initActionsConnections()
     connect(m_ui->actionPhotoSensor, &QAction::triggered, this, &MainWindow::getPhotosensor);
     connect(m_ui->actionStartBF, &QAction::triggered, this, &MainWindow::startBFWorker);
     connect(m_ui->actionStopBF, &QAction::triggered, this, &MainWindow::stopBFWorker);
+    connect(m_ui->actionCalibration, &QAction::triggered, this, &MainWindow::sendCalibrate);
 }
 
 void MainWindow::showStatusMessage(const QString &message)

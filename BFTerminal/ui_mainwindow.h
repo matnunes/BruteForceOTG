@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.4
+** Created by: Qt User Interface Compiler version 5.12.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -38,6 +38,7 @@ public:
     QAction *actionStartBF;
     QAction *actionStopBF;
     QAction *actionResume;
+    QAction *actionCalibration;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QMenuBar *menuBar;
@@ -51,7 +52,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(376, 408);
+        MainWindow->resize(436, 408);
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
         actionAboutQt = new QAction(MainWindow);
@@ -111,6 +112,11 @@ public:
         QIcon icon10;
         icon10.addFile(QString::fromUtf8(":/images/inarrow.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionResume->setIcon(icon10);
+        actionCalibration = new QAction(MainWindow);
+        actionCalibration->setObjectName(QString::fromUtf8("actionCalibration"));
+        QIcon icon11;
+        icon11.addFile(QString::fromUtf8(":/images/shamrock.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCalibration->setIcon(icon11);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -120,7 +126,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 376, 21));
+        menuBar->setGeometry(QRect(0, 0, 436, 21));
         menuCalls = new QMenu(menuBar);
         menuCalls->setObjectName(QString::fromUtf8("menuCalls"));
         menuTools = new QMenu(menuBar);
@@ -156,6 +162,7 @@ public:
         mainToolBar->addAction(actionOpenDict);
         mainToolBar->addAction(actionWakePhone);
         mainToolBar->addAction(actionPhotoSensor);
+        mainToolBar->addAction(actionCalibration);
         mainToolBar->addSeparator();
         mainToolBar->addAction(actionStartBF);
         mainToolBar->addAction(actionStopBF);
@@ -223,7 +230,11 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionResume->setToolTip(QApplication::translate("MainWindow", "Resume", nullptr));
 #endif // QT_NO_TOOLTIP
-        menuCalls->setTitle(QApplication::translate("MainWindow", "Calls", nullptr));
+        actionCalibration->setText(QApplication::translate("MainWindow", "Calibration", nullptr));
+#ifndef QT_NO_TOOLTIP
+        actionCalibration->setToolTip(QApplication::translate("MainWindow", "Calibrate", nullptr));
+#endif // QT_NO_TOOLTIP
+        menuCalls->setTitle(QApplication::translate("MainWindow", "Serial", nullptr));
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", nullptr));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi

@@ -87,6 +87,7 @@ private slots:
     void openWordlist();
     void wakePhone();
     void getPhotosensor();
+    void sendCalibrate();
     void updateConsole(QString);
     void startBFWorker();
     void stopBFWorker();
