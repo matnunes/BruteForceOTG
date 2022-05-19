@@ -11,3 +11,4 @@ BFTerminal/release/qrc_terminal.cpp
 BFTerminal/Makefile
 *.exe
 BFTerminal/terminal.pro.user
+*.dll
