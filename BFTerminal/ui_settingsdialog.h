@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'settingsdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.4
+** Created by: Qt User Interface Compiler version 5.12.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QGridLayout>
@@ -21,7 +20,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
@@ -29,6 +27,15 @@ class Ui_SettingsDialog
 {
 public:
     QGridLayout *gridLayout_3;
+    QGroupBox *selectBox;
+    QGridLayout *gridLayout;
+    QComboBox *serialPortInfoListBox;
+    QLabel *descriptionLabel;
+    QLabel *manufacturerLabel;
+    QLabel *serialNumberLabel;
+    QLabel *locationLabel;
+    QLabel *vidLabel;
+    QLabel *pidLabel;
     QGroupBox *parametersBox;
     QGridLayout *gridLayout_2;
     QLabel *dataBitsLabel;
@@ -45,29 +52,59 @@ public:
     QLabel *stopBitsLabel;
     QComboBox *flowControlBox;
     QComboBox *baudRateBox;
-    QGroupBox *selectBox;
-    QGridLayout *gridLayout;
-    QComboBox *serialPortInfoListBox;
-    QLabel *descriptionLabel;
-    QLabel *manufacturerLabel;
-    QLabel *serialNumberLabel;
-    QLabel *locationLabel;
-    QLabel *vidLabel;
-    QLabel *pidLabel;
     QHBoxLayout *horizontalLayout;
     QSpacerItem *horizontalSpacer;
     QPushButton *applyButton;
-    QGroupBox *additionalOptionsGroupBox;
-    QVBoxLayout *verticalLayout;
-    QCheckBox *localEchoCheckBox;
 
     void setupUi(QDialog *SettingsDialog)
     {
         if (SettingsDialog->objectName().isEmpty())
             SettingsDialog->setObjectName(QString::fromUtf8("SettingsDialog"));
-        SettingsDialog->resize(409, 314);
+        SettingsDialog->resize(409, 266);
         gridLayout_3 = new QGridLayout(SettingsDialog);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        selectBox = new QGroupBox(SettingsDialog);
+        selectBox->setObjectName(QString::fromUtf8("selectBox"));
+        gridLayout = new QGridLayout(selectBox);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        serialPortInfoListBox = new QComboBox(selectBox);
+        serialPortInfoListBox->setObjectName(QString::fromUtf8("serialPortInfoListBox"));
+
+        gridLayout->addWidget(serialPortInfoListBox, 0, 0, 1, 1);
+
+        descriptionLabel = new QLabel(selectBox);
+        descriptionLabel->setObjectName(QString::fromUtf8("descriptionLabel"));
+
+        gridLayout->addWidget(descriptionLabel, 1, 0, 1, 1);
+
+        manufacturerLabel = new QLabel(selectBox);
+        manufacturerLabel->setObjectName(QString::fromUtf8("manufacturerLabel"));
+
+        gridLayout->addWidget(manufacturerLabel, 2, 0, 1, 1);
+
+        serialNumberLabel = new QLabel(selectBox);
+        serialNumberLabel->setObjectName(QString::fromUtf8("serialNumberLabel"));
+
+        gridLayout->addWidget(serialNumberLabel, 3, 0, 1, 1);
+
+        locationLabel = new QLabel(selectBox);
+        locationLabel->setObjectName(QString::fromUtf8("locationLabel"));
+
+        gridLayout->addWidget(locationLabel, 4, 0, 1, 1);
+
+        vidLabel = new QLabel(selectBox);
+        vidLabel->setObjectName(QString::fromUtf8("vidLabel"));
+
+        gridLayout->addWidget(vidLabel, 5, 0, 1, 1);
+
+        pidLabel = new QLabel(selectBox);
+        pidLabel->setObjectName(QString::fromUtf8("pidLabel"));
+
+        gridLayout->addWidget(pidLabel, 6, 0, 1, 1);
+
+
+        gridLayout_3->addWidget(selectBox, 0, 0, 1, 1);
+
         parametersBox = new QGroupBox(SettingsDialog);
         parametersBox->setObjectName(QString::fromUtf8("parametersBox"));
         gridLayout_2 = new QGridLayout(parametersBox);
@@ -145,48 +182,6 @@ public:
 
         gridLayout_3->addWidget(parametersBox, 0, 1, 1, 1);
 
-        selectBox = new QGroupBox(SettingsDialog);
-        selectBox->setObjectName(QString::fromUtf8("selectBox"));
-        gridLayout = new QGridLayout(selectBox);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        serialPortInfoListBox = new QComboBox(selectBox);
-        serialPortInfoListBox->setObjectName(QString::fromUtf8("serialPortInfoListBox"));
-
-        gridLayout->addWidget(serialPortInfoListBox, 0, 0, 1, 1);
-
-        descriptionLabel = new QLabel(selectBox);
-        descriptionLabel->setObjectName(QString::fromUtf8("descriptionLabel"));
-
-        gridLayout->addWidget(descriptionLabel, 1, 0, 1, 1);
-
-        manufacturerLabel = new QLabel(selectBox);
-        manufacturerLabel->setObjectName(QString::fromUtf8("manufacturerLabel"));
-
-        gridLayout->addWidget(manufacturerLabel, 2, 0, 1, 1);
-
-        serialNumberLabel = new QLabel(selectBox);
-        serialNumberLabel->setObjectName(QString::fromUtf8("serialNumberLabel"));
-
-        gridLayout->addWidget(serialNumberLabel, 3, 0, 1, 1);
-
-        locationLabel = new QLabel(selectBox);
-        locationLabel->setObjectName(QString::fromUtf8("locationLabel"));
-
-        gridLayout->addWidget(locationLabel, 4, 0, 1, 1);
-
-        vidLabel = new QLabel(selectBox);
-        vidLabel->setObjectName(QString::fromUtf8("vidLabel"));
-
-        gridLayout->addWidget(vidLabel, 5, 0, 1, 1);
-
-        pidLabel = new QLabel(selectBox);
-        pidLabel->setObjectName(QString::fromUtf8("pidLabel"));
-
-        gridLayout->addWidget(pidLabel, 6, 0, 1, 1);
-
-
-        gridLayout_3->addWidget(selectBox, 0, 0, 1, 1);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalSpacer = new QSpacerItem(96, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -199,20 +194,7 @@ public:
         horizontalLayout->addWidget(applyButton);
 
 
-        gridLayout_3->addLayout(horizontalLayout, 2, 0, 1, 2);
-
-        additionalOptionsGroupBox = new QGroupBox(SettingsDialog);
-        additionalOptionsGroupBox->setObjectName(QString::fromUtf8("additionalOptionsGroupBox"));
-        verticalLayout = new QVBoxLayout(additionalOptionsGroupBox);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        localEchoCheckBox = new QCheckBox(additionalOptionsGroupBox);
-        localEchoCheckBox->setObjectName(QString::fromUtf8("localEchoCheckBox"));
-        localEchoCheckBox->setChecked(true);
-
-        verticalLayout->addWidget(localEchoCheckBox);
-
-
-        gridLayout_3->addWidget(additionalOptionsGroupBox, 1, 0, 1, 2);
+        gridLayout_3->addLayout(horizontalLayout, 1, 0, 1, 2);
 
 
         retranslateUi(SettingsDialog);
@@ -223,6 +205,13 @@ public:
     void retranslateUi(QDialog *SettingsDialog)
     {
         SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Settings", nullptr));
+        selectBox->setTitle(QApplication::translate("SettingsDialog", "Select Serial Port", nullptr));
+        descriptionLabel->setText(QApplication::translate("SettingsDialog", "Description:", nullptr));
+        manufacturerLabel->setText(QApplication::translate("SettingsDialog", "Manufacturer:", nullptr));
+        serialNumberLabel->setText(QApplication::translate("SettingsDialog", "Serial number:", nullptr));
+        locationLabel->setText(QApplication::translate("SettingsDialog", "Location:", nullptr));
+        vidLabel->setText(QApplication::translate("SettingsDialog", "Vendor ID:", nullptr));
+        pidLabel->setText(QApplication::translate("SettingsDialog", "Product ID:", nullptr));
         parametersBox->setTitle(QApplication::translate("SettingsDialog", "Select Parameters", nullptr));
         dataBitsLabel->setText(QApplication::translate("SettingsDialog", "Data bits:", nullptr));
         label_2->setText(QApplication::translate("SettingsDialog", "Screen off value:", nullptr));
@@ -231,16 +220,7 @@ public:
         parityLabel->setText(QApplication::translate("SettingsDialog", "Parity:", nullptr));
         flowControlLabel->setText(QApplication::translate("SettingsDialog", "Flow control:", nullptr));
         stopBitsLabel->setText(QApplication::translate("SettingsDialog", "Stop bits:", nullptr));
-        selectBox->setTitle(QApplication::translate("SettingsDialog", "Select Serial Port", nullptr));
-        descriptionLabel->setText(QApplication::translate("SettingsDialog", "Description:", nullptr));
-        manufacturerLabel->setText(QApplication::translate("SettingsDialog", "Manufacturer:", nullptr));
-        serialNumberLabel->setText(QApplication::translate("SettingsDialog", "Serial number:", nullptr));
-        locationLabel->setText(QApplication::translate("SettingsDialog", "Location:", nullptr));
-        vidLabel->setText(QApplication::translate("SettingsDialog", "Vendor ID:", nullptr));
-        pidLabel->setText(QApplication::translate("SettingsDialog", "Product ID:", nullptr));
         applyButton->setText(QApplication::translate("SettingsDialog", "Apply", nullptr));
-        additionalOptionsGroupBox->setTitle(QApplication::translate("SettingsDialog", "Additional options", nullptr));
-        localEchoCheckBox->setText(QApplication::translate("SettingsDialog", "Local echo", nullptr));
     } // retranslateUi
 
 };
