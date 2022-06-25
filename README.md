@@ -17,4 +17,9 @@ A few seconds after guessing a password BFTerminal probes a photocell sensor att
 
 ## Schematic
 
-<img src="https://github.com/matnunes/BruteForceOTG/blob/main/misc/BruteForceOTG.png?raw=true" height=500px>
+<img src="https://github.com/matnunes/BruteForceOTG/blob/main/misc/BruteForceOTG.png?raw=true" height=350px>
+
+
+## User interface
+
+<img src="https://github.com/matnunes/BruteForceOTG/blob/main/misc/UI.png?raw=true" height=500px>
