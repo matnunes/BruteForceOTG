@@ -196,7 +196,7 @@ void MainWindow::sendCalibrate()
 
 void MainWindow::updateConsole(QString text)
 {
-    m_console->putData(QString(QDateTime::currentDateTime().toString("hh:mm:ss.zzz")+": "+text).append("\r\n").toUtf8());
+    m_console->putData(QString(QDateTime::currentDateTime().toString("dd/MM/yyyy hh:mm:ss.zzz")+": "+text).append("\r\n").toUtf8());
 }
 
 void MainWindow::startBFWorker()
@@ -213,6 +213,7 @@ void MainWindow::startBFWorker()
 void MainWindow::stopBFWorker()
 {
     if (bfWorkerThread->isRunning())
+        closeSerialPort();
         bfWorkerThread->exit();
 }
 

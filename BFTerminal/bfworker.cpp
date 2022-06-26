@@ -44,10 +44,10 @@ void BFWorker::run()
          emit updateConsole("connected  "+serialConn->portName().toUtf8()+".");
          int currentLine = startIndex;
          bool testPassword = true;
-         int countWrongPass = 0;
+         int countWrongPass = 0;        //counter of consecutive wrong passwords (after the 5th wrong password, has to wait 30s penalty)
 
          while((testPassword) && (currentLine < wordlist->size()))
-         {           
+         {
             QString roundPassword = wordlist->at(currentLine);
 
             //1
@@ -56,7 +56,7 @@ void BFWorker::run()
 
             //2
             emit updateConsole("sending password >>"+roundPassword.toUtf8()+"<<");
-            emit sendString(roundPassword.toUtf8()+"\n");  //tries password
+            emit sendString(roundPassword.toUtf8()+"\n");   //tries password
             emit updateConsole("round "+QString::number(currentLine).toUtf8()+" of "+QString::number(wordlist->size()).toUtf8()+".");            
             countWrongPass++;
 
@@ -71,14 +71,14 @@ void BFWorker::run()
             }
 
             //4
-            QThread::currentThread()->msleep(2100); //timeout before next attempt
+            QThread::currentThread()->msleep(2100); //timeout before next attempt (no penalty, only small timeout)
 
-            if (countWrongPass >= 5)    //if wrong pass 5 times, awaits 30s
+            if (countWrongPass >= 5)        //if wrong pass 5 times, awaits penalty 30s
             {
                 emit wakeUpPhone();
-                emit sendString("U");  //tries password
+                emit sendString("U");   	//tries password
                 QThread::currentThread()->msleep(30100); //timeout before next attempt
-                countWrongPass = 0;
+                countWrongPass = 0;         //resets counter for wrong pass
 
             }
 
