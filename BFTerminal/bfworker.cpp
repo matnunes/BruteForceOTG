@@ -1,12 +1,13 @@
 #include "bfworker.h"
 #include <QDebug>
+#include <QDateTime>
 
 BFWorker::BFWorker(QObject * parent)
 {
     connect(this,SIGNAL(wakeUpPhone()),this,SLOT(wakePhone()));
     connect(this,SIGNAL(readPhotosensorValue()),this,SLOT(getPhotosensor()));
     connect(this,SIGNAL(sendString(QByteArray)),this,SLOT(writeData(QByteArray)));
-    startIndex = 0;
+    startIndex = 0;    
 }
 
 bool BFWorker::connectBFClient(SettingsDialog::Settings portSettings)
@@ -51,7 +52,7 @@ void BFWorker::run()
 
             //1
             emit wakeUpPhone();
-            QThread::currentThread()->msleep(1150); //awaits a bit for login screen animation
+            QThread::currentThread()->msleep(1250); //awaits a bit for login screen animation
 
             //2
             emit updateConsole("sending password >>"+roundPassword.toUtf8()+"<<");
@@ -59,17 +60,28 @@ void BFWorker::run()
             emit updateConsole("round "+QString::number(currentLine).toUtf8()+" of "+QString::number(wordlist->size()).toUtf8()+".");
 
             //3
-            QThread::currentThread()->msleep(12150); //awaits 12 seconds for screen to turn off if pwd was wrong
+            int totalDelay = 12150;                 //delay in milisseconds for basic PIN
 
+            if (deviceLockType == SWIPE)
+            {
+                int baseWaitPatternDrawing = 16750; //delay in milisseconds for basic 4 dots
+                int timeSwipeDot = 1850;            //delay in milisseconds for each additional dot of the swipe pattern
+                totalDelay = baseWaitPatternDrawing + ((roundPassword.length()-4) * timeSwipeDot);
+            }
+
+            QThread::currentThread()->msleep(totalDelay);   //awaits for screen to turn off if pwd was wrong
+
+            //4
             emit readPhotosensorValue();
-            QThread::currentThread()->msleep(850);
+            QThread::currentThread()->msleep(850);          //small delay to receive response from Leonardo
+
             if ((currentScreen > (screenOff+25)) || (currentScreen < (screenOff*0)))
             {
                 emit updateConsole("!!! PHOTOSENSOR out of threshold. STOPPING SEARCH !!!");
                 testPassword = false;
             }
 
-            //4
+            //5
             QThread::currentThread()->msleep(19150); //timeout before next attempt
 
             currentLine++;
@@ -106,13 +118,12 @@ int BFWorker::getPhotosensor()
         data.append(serialConn->readLine());
     }
 
-    qDebug() << data.simplified();
     qDebug() << QDateTime::currentDateTime().toString("yyyy.MM.dd-hh:mm:ss.zzz") << " sensor:" <<data.simplified();
 
     currentScreen = data.toInt();
     emit updateConsole("screen value "+data.simplified()+
-                       ". Limit MIN:"+QString::number(screenOff*0.8)+
-                       " MAX:"+QString::number(screenOff*1.2)+".");
+                       ". Limit MIN:"+QString::number(screenOff*0)+
+                       " MAX:"+QString::number(screenOff+25)+".");
     return data.toInt();
 }
 

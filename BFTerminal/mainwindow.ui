@@ -48,8 +48,17 @@
     <addaction name="actionAbout"/>
     <addaction name="actionAboutQt"/>
    </widget>
+   <widget class="QMenu" name="menuLock_type">
+    <property name="title">
+     <string>Lock config</string>
+    </property>
+    <addaction name="separator"/>
+    <addaction name="actionPIN"/>
+    <addaction name="actionSwipePattern"/>
+   </widget>
    <addaction name="menuCalls"/>
    <addaction name="menuTools"/>
+   <addaction name="menuLock_type"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -243,6 +252,22 @@
    </property>
    <property name="toolTip">
     <string>Calibrate</string>
+   </property>
+  </action>
+  <action name="actionPIN">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>PIN</string>
+   </property>
+  </action>
+  <action name="actionSwipePattern">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Swipe pattern</string>
    </property>
   </action>
  </widget>

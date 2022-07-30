@@ -7,6 +7,7 @@
 #include <QThread>
 #include <QSerialPort>
 
+
 class BFWorker : public QThread
 {
     Q_OBJECT
@@ -18,6 +19,13 @@ public:
     void disconnectBFClient();
     int startIndex = 0; //index start pw worlist
     int screenOff = 0;  //screen off brightness value
+
+    enum LockType{
+        PIN = 0,
+        SWIPE = 1
+    };
+
+    int deviceLockType;
 
 private:
     void run();

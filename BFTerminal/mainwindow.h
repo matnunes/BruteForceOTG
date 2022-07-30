@@ -93,6 +93,8 @@ private slots:
     void stopBFWorker();
 
     void handleError(QSerialPort::SerialPortError error);
+    void on_actionSwipePattern_triggered();
+    void on_actionPIN_triggered();
 
 private:
     void initActionsConnections();
@@ -106,6 +108,7 @@ private:
     SettingsDialog *m_settings = nullptr;
     QSerialPort *m_serial = nullptr;
     BFWorker *bfWorkerThread = nullptr;
+    void updateConsoleDeviceInfo(int);
 };
 
 #endif // MAINWINDOW_H

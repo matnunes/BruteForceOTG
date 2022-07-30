@@ -91,6 +91,8 @@ MainWindow::MainWindow(QWidget *parent) :
     bfWorkerThread = new BFWorker(this);
     connect(this,SIGNAL(setWordlist(QStringList)),bfWorkerThread,SLOT(setWordlist(QStringList)));
     connect(bfWorkerThread,SIGNAL(updateConsole(QString)),this,SLOT(updateConsole(QString)));
+    bfWorkerThread->deviceLockType = bfWorkerThread->PIN;   //default lock type is PIN
+    m_ui->actionPIN->setChecked(true);
 }
 
 MainWindow::~MainWindow()
@@ -236,4 +238,42 @@ void MainWindow::initActionsConnections()
 void MainWindow::showStatusMessage(const QString &message)
 {
     m_status->setText(message);
+}
+
+void MainWindow::on_actionSwipePattern_triggered()
+{
+    if (m_ui->actionSwipePattern->isChecked())
+    {
+        m_ui->actionPIN->setChecked(false);
+        bfWorkerThread->deviceLockType = bfWorkerThread->SWIPE;
+    }
+    else
+    {
+        m_ui->actionPIN->setChecked(true);
+        bfWorkerThread->deviceLockType = bfWorkerThread->PIN;
+    }
+    updateConsoleDeviceInfo(bfWorkerThread->deviceLockType);
+}
+
+void MainWindow::on_actionPIN_triggered()
+{
+    if (m_ui->actionPIN->isChecked())
+    {
+        m_ui->actionSwipePattern->setChecked(false);
+        bfWorkerThread->deviceLockType = bfWorkerThread->PIN;
+    }
+    else
+    {
+        m_ui->actionSwipePattern->setChecked(true);
+        bfWorkerThread->deviceLockType = bfWorkerThread->SWIPE;
+    }
+    updateConsoleDeviceInfo(bfWorkerThread->deviceLockType);
+}
+
+void MainWindow::updateConsoleDeviceInfo(int lockType)
+{
+    if (lockType == bfWorkerThread->PIN)
+        updateConsole(QString("Device lock type is: PIN."));
+    if (lockType == bfWorkerThread->SWIPE)
+        updateConsole(QString("Device lock type is: SWIPE."));
 }

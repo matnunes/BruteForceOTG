@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.0
+** Created by: Qt User Interface Compiler version 5.12.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -39,12 +39,15 @@ public:
     QAction *actionStopBF;
     QAction *actionResume;
     QAction *actionCalibration;
+    QAction *actionPIN;
+    QAction *actionSwipePattern;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QMenuBar *menuBar;
     QMenu *menuCalls;
     QMenu *menuTools;
     QMenu *menuHelp;
+    QMenu *menuLock_type;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -117,6 +120,12 @@ public:
         QIcon icon11;
         icon11.addFile(QString::fromUtf8(":/images/shamrock.ico"), QSize(), QIcon::Normal, QIcon::Off);
         actionCalibration->setIcon(icon11);
+        actionPIN = new QAction(MainWindow);
+        actionPIN->setObjectName(QString::fromUtf8("actionPIN"));
+        actionPIN->setCheckable(true);
+        actionSwipePattern = new QAction(MainWindow);
+        actionSwipePattern->setObjectName(QString::fromUtf8("actionSwipePattern"));
+        actionSwipePattern->setCheckable(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -133,6 +142,8 @@ public:
         menuTools->setObjectName(QString::fromUtf8("menuTools"));
         menuHelp = new QMenu(menuBar);
         menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
+        menuLock_type = new QMenu(menuBar);
+        menuLock_type->setObjectName(QString::fromUtf8("menuLock_type"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -145,6 +156,7 @@ public:
 
         menuBar->addAction(menuCalls->menuAction());
         menuBar->addAction(menuTools->menuAction());
+        menuBar->addAction(menuLock_type->menuAction());
         menuBar->addAction(menuHelp->menuAction());
         menuCalls->addAction(actionConnect);
         menuCalls->addAction(actionDisconnect);
@@ -154,6 +166,9 @@ public:
         menuTools->addAction(actionClear);
         menuHelp->addAction(actionAbout);
         menuHelp->addAction(actionAboutQt);
+        menuLock_type->addSeparator();
+        menuLock_type->addAction(actionPIN);
+        menuLock_type->addAction(actionSwipePattern);
         mainToolBar->addAction(actionConnect);
         mainToolBar->addAction(actionDisconnect);
         mainToolBar->addAction(actionConfigure);
@@ -234,9 +249,12 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionCalibration->setToolTip(QApplication::translate("MainWindow", "Calibrate", nullptr));
 #endif // QT_NO_TOOLTIP
+        actionPIN->setText(QApplication::translate("MainWindow", "PIN", nullptr));
+        actionSwipePattern->setText(QApplication::translate("MainWindow", "Swipe pattern", nullptr));
         menuCalls->setTitle(QApplication::translate("MainWindow", "Serial", nullptr));
         menuTools->setTitle(QApplication::translate("MainWindow", "Tools", nullptr));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", nullptr));
+        menuLock_type->setTitle(QApplication::translate("MainWindow", "Lock config", nullptr));
     } // retranslateUi
 
 };
