@@ -106,6 +106,7 @@ int BFWorker::getPhotosensor()
     }
 
     qDebug() << data.simplified();
+    qDebug() << QDateTime::currentDateTime().toString("yyyy.MM.dd-hh:mm:ss.zzz") << " sensor:" <<data.simplified();
 
     currentScreen = data.toInt();
     emit updateConsole("screen value "+data.simplified()+
