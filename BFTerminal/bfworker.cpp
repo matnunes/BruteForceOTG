@@ -62,7 +62,8 @@ void BFWorker::run()
             QThread::currentThread()->msleep(12150); //awaits 12 seconds for screen to turn off if pwd was wrong
 
             emit readPhotosensorValue();
-            if ((currentScreen > (screenOff*1.2)) || (currentScreen < (screenOff*0.8)))
+            QThread::currentThread()->msleep(850);
+            if ((currentScreen > (screenOff+25)) || (currentScreen < (screenOff*0)))
             {
                 emit updateConsole("!!! PHOTOSENSOR out of threshold. STOPPING SEARCH !!!");
                 testPassword = false;
