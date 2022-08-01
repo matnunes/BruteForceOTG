@@ -2,6 +2,7 @@
 *.o
 *.Debug
 *.Release
+bin/
 BFTerminal/release/moc_bfworker.cpp
 BFTerminal/release/moc_console.cpp
 BFTerminal/release/moc_mainwindow.cpp

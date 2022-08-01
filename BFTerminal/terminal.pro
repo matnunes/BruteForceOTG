@@ -1,7 +1,7 @@
 QT += widgets serialport
 requires(qtConfig(combobox))
 
-TARGET = terminal
+TARGET = BFTerminal
 TEMPLATE = app
 
 SOURCES += \
