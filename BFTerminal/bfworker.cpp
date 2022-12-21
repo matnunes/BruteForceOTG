@@ -64,8 +64,8 @@ void BFWorker::run()
 
             if (deviceLockType == SWIPE)
             {
-                int baseWaitPatternDrawing = 16750; //delay in milisseconds for basic 4 dots
-                int timeSwipeDot = 1850;            //delay in milisseconds for each additional dot of the swipe pattern
+                int baseWaitPatternDrawing = 19750; //delay in milisseconds for basic 4 dots
+                int timeSwipeDot = 2050;            //delay in milisseconds for each additional dot of the swipe pattern
                 totalDelay = baseWaitPatternDrawing + ((roundPassword.length()-4) * timeSwipeDot);
             }
 
@@ -73,7 +73,8 @@ void BFWorker::run()
 
             //4
             emit readPhotosensorValue();
-            QThread::currentThread()->msleep(850);          //small delay to receive response from Leonardo
+            qDebug() << "round " << QString::number(currentLine).toUtf8() << " of " << QString::number(wordlist->size()).toUtf8() << ".";
+            QThread::currentThread()->msleep(250);          //small delay to receive response from Leonardo
 
             if ((currentScreen > (screenOff+25)) || (currentScreen < (screenOff*0)))
             {
@@ -118,7 +119,7 @@ int BFWorker::getPhotosensor()
         data.append(serialConn->readLine());
     }
 
-    qDebug() << QDateTime::currentDateTime().toString("yyyy.MM.dd-hh:mm:ss.zzz") << " sensor:" <<data.simplified();
+    qDebug() << QDateTime::currentDateTime().toString("yyyy.MM.dd-hh:mm:ss.zzz") << " sensor:" << data.simplified();
 
     currentScreen = data.toInt();
     emit updateConsole("screen value "+data.simplified()+

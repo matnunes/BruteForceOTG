@@ -60,12 +60,15 @@ Console::Console(QWidget *parent) :
     QPalette p = palette();
     p.setColor(QPalette::Base, Qt::black);
     p.setColor(QPalette::Text, Qt::green);
-    setPalette(p);    
+    setPalette(p);
 }
 
 void Console::putData(const QByteArray &data)
 {
-    insertPlainText(data);   
+    insertPlainText(data);
+
+    QScrollBar *bar = verticalScrollBar();
+    bar->setValue(bar->maximum());
 }
 
 void Console::keyPressEvent(QKeyEvent *e)
